@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Subtle background shadow of the icon -->
+    <path
+        android:pathData="M54,26 C70,26 82,38 82,54 C82,70 70,82 54,82 C38,82 26,70 26,54 C26,38 38,26 54,26 Z"
+        android:fillColor="#33000000"/>
+
+    <!-- Stylish main outer ring / coin edge with a subtle gradient -->
+    <path
+        android:pathData="M54,28 A26,26 0 1 0 54,80 A26,26 0 1 0 54,28"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="28"
+                android:startY="28"
+                android:endX="80"
+                android:endY="80"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#FFFFD700"/> <!-- Gold -->
+                <item android:offset="1.0" android:color="#FFA17A00"/> <!-- Darker Gold -->
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Upward trend chart arrow pointing out of the coin -->
+    <path
+        android:pathData="M38,62 L48,52 L58,60 L78,38 M78,38 L66,38 M78,38 L78,50"
+        android:strokeWidth="4.5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round">
+        <aapt:attr name="android:strokeColor">
+            <gradient
+                android:startX="38"
+                android:startY="62"
+                android:endX="78"
+                android:endY="38"
+                android:type="linear">
+                <item android:offset="0.0" android:color="#FF00F5D4"/> <!-- Vibrant Teal -->
+                <item android:offset="1.0" android:color="#FF00BBF9"/> <!-- Cyan -->
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Inner dollar/rupiah wealth symbol at the center of the coin -->
+    <path
+        android:pathData="M54,38 C51.5,38 49.5,39.5 49.5,42 C49.5,46 58.5,45 58.5,49 C58.5,51.5 56.5,53 54,53 C51.5,53 49.5,51.5 49.5,49 M54,35 L54,56"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:strokeColor="#FFFFF5C0"/>
+
+    <!-- Additional dynamic floating glowing dots/stars representing earnings / savings harian -->
+    <path
+        android:pathData="M78,28 L80,30 L78,32 L76,30 Z"
+        android:fillColor="#FFFFD700"/>
+    <path
+        android:pathData="M30,42 L31,43 L30,44 L29,43 Z"
+        android:fillColor="#FFFFD700"/>
+</vector>

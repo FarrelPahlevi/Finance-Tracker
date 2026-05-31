@@ -1,0 +1,6 @@
+{
+  "name": "Finance Tracker",
+  "description": "Personal Finance Tracker featuring Wallet and SeaBank tracking, automated interest, and JSON backup & restore.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
