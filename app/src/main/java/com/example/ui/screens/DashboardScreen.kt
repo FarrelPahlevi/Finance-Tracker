@@ -52,7 +52,10 @@ fun DashboardScreen(viewModel: FinanceViewModel) {
     val topBorosAmount = expenseGrouped.maxByOrNull { it.value }?.value ?: 0.0
 
     // Recent items
-    val recentTransactions = transactions.take(5)
+    val recentTransactions = transactions.sortedWith(
+        compareByDescending<TransactionEntity> { it.tanggal }
+            .thenByDescending { it.createdAt }
+    ).take(5)
 
     LazyColumn(
         modifier = Modifier

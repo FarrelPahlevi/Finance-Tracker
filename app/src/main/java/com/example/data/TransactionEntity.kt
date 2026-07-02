@@ -13,5 +13,6 @@ data class TransactionEntity(
     val sumber: String, // "dompet" or "seabank"
     val tanggal: String, // "yyyy-MM-dd"
     val catatan: String,
-    val isAuto: Boolean = false
+    val isAuto: Boolean = false,
+    val createdAt: Long = System.currentTimeMillis()
 )

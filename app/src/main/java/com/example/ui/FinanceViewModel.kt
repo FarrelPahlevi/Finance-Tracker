@@ -86,7 +86,10 @@ class FinanceViewModel(
 
                 // Fetch transactions from Room DB
                 database.transactionDao.getAllTransactionsFlow().collect { list ->
-                    _transactions.value = list
+                    _transactions.value = list.sortedWith(
+                        compareByDescending<TransactionEntity> { it.tanggal }
+                            .thenByDescending { it.createdAt }
+                    )
                 }
             } else {
                 _isSetupCompleted.value = false
@@ -182,7 +185,8 @@ class FinanceViewModel(
                                 sumber = "seabank",
                                 tanggal = dateFormatted,
                                 catatan = "Auto calculate harian",
-                                isAuto = true
+                                isAuto = true,
+                                createdAt = System.currentTimeMillis() + loopCount
                             )
                             addedTxs.add(interestTx)
                         }
@@ -237,7 +241,8 @@ class FinanceViewModel(
                     nominal = walletInitial,
                     sumber = "dompet",
                     tanggal = todayStr,
-                    catatan = "Baseline saldo awal Dompet"
+                    catatan = "Baseline saldo awal Dompet",
+                    createdAt = System.currentTimeMillis()
                 )
 
                 val seabankSetup = TransactionEntity(
@@ -248,7 +253,8 @@ class FinanceViewModel(
                     nominal = seabankInitial,
                     sumber = "seabank",
                     tanggal = todayStr,
-                    catatan = "Baseline saldo awal SeaBank"
+                    catatan = "Baseline saldo awal SeaBank",
+                    createdAt = System.currentTimeMillis() + 1
                 )
 
                 kotlinx.coroutines.withContext(kotlinx.coroutines.Dispatchers.IO) {
@@ -262,7 +268,10 @@ class FinanceViewModel(
                 
                 // Collect transactions flow
                 database.transactionDao.getAllTransactionsFlow().collect { list ->
-                    _transactions.value = list
+                    _transactions.value = list.sortedWith(
+                        compareByDescending<TransactionEntity> { it.tanggal }
+                            .thenByDescending { it.createdAt }
+                    )
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -331,7 +340,8 @@ class FinanceViewModel(
             nominal = nominal,
             sumber = sumber,
             tanggal = tanggal,
-            catatan = catatan
+            catatan = catatan,
+            createdAt = System.currentTimeMillis()
         )
 
         val currentBalances = Balances(_balanceDompet.value, _balanceSeaBank.value)
@@ -518,6 +528,7 @@ class FinanceViewModel(
             obj.put("tanggal", tx.tanggal)
             obj.put("catatan", tx.catatan)
             obj.put("isAuto", tx.isAuto)
+            obj.put("createdAt", tx.createdAt)
             txArray.put(obj)
         }
         root.put("transactions", txArray)
@@ -554,7 +565,8 @@ class FinanceViewModel(
                         sumber = obj.getString("sumber"),
                         tanggal = obj.getString("tanggal"),
                         catatan = obj.optString("catatan", ""),
-                        isAuto = obj.optBoolean("isAuto", false)
+                        isAuto = obj.optBoolean("isAuto", false),
+                        createdAt = obj.optLong("createdAt", System.currentTimeMillis())
                     )
                 )
             }
